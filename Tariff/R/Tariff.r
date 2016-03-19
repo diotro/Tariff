@@ -28,10 +28,9 @@
 #' Maintainer: Zehang Li <lizehang@@uw.edu>
 #' @references James, S. L., Flaxman, A. D., Murray, C. J., & Population Health Metrics Research Consortium. (2011). \emph{Performance of the Tariff Method: validation of a simple additive algorithm for analysis of verbal autopsies.} \emph{Population Health Metrics, 9(1), 1-16.}
 #' @references Tyler H. McCormick, Zehang R. Li, Clara Calvert, Amelia C.
-#' Crampin, Kathleen Kahn and Samuel J. Clark(2014) \emph{Probabilistic
+#' Crampin, Kathleen Kahn and Samuel J. Clark(2016) \emph{Probabilistic
 #' cause-of-death assignment using verbal autopsies},
-#' \url{http://arxiv.org/abs/1411.3042} \emph{Working paper no. 147, Center
-#' for Statistics and the Social Sciences, University of Washington}
+#' \url{http://arxiv.org/abs/1411.3042} \emph{To appear, Journal of the American Statistical Association}
 #' @keywords Tariff
 #' @examples
 #'\donttest{
@@ -52,11 +51,11 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 	if(class(causes.train) == "character" && length(causes.train) == 1){
 		colindex <- match(causes.train, colnames(symps.train))
 		colindex2 <- match(causes.train, colnames(symps.test))
-
-		causes.train <- symps.train[, colindex]
-		if(is.null(causes.table)){
-			causes.table <- unique(symps.train[, colindex])
+    
+		if(is.na(colindex)){
+		  stop("Cannot find the cause-of-death column in training data")
 		}
+		causes.train <- symps.train[, colindex]
 		symps.train <- symps.train[, -colindex]
 
 		# also remove this from testing data if it is provided
@@ -66,6 +65,10 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 		}
 	}
 
+  if(is.null(causes.table)){
+    causes.table <- unique(causes.train)
+  }
+  
 	id.train <- symps.train[, 1]
 	symps.train <- symps.train[, -1]
 	id.test <- symps.test[, 1]
