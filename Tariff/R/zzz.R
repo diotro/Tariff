@@ -1,6 +1,6 @@
 .onAttach <- function( lib, pkg ) {
    packageStartupMessage(
-      paste0( "Warning: this is not the official Tariff algorithm as supported by IHME. This is an open source replication of the Tariff algorith. Unintentional discrepancies may exist.\n",
+      paste0( "Warning: This package was not developed by authors affiliated with the Institute for Health Metrics and Evaluation. This is an open source replication of the Tariff algorithm. Unintentional discrepancies may exist.\n",
 
 		 "To cite the Tariff package, please use this function:\n",
 		 "citation(package = \"Tariff\")\n",
