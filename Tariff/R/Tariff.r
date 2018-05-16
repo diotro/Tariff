@@ -23,6 +23,7 @@
 #' \item{causes.test}{vector of most likely causes in testing data} 
 #' \item{csmf}{vector of CSMF}
 #' \item{causes.table}{cause list used for output, i.e., list of existing causes in the training data}
+#' \item{use.rank}{logical indicator for whether using ranks instead of scores}
 #' @author Zehang Li, Tyler McCormick, Sam Clark
 #' 
 #' Maintainer: Zehang Li <lizehang@@uw.edu>
@@ -319,7 +320,8 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 				causes.train = causes.train.out,
 				causes.test = causes.test.out,
 				csmf = CSMF, 
-				causes.table = causes.table2)
+				causes.table = causes.table2, 
+				use.rank = use.rank)
 	class(fit) <- "tariff"
 	return(fit)
 }

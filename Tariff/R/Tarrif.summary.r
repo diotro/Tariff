@@ -29,13 +29,14 @@ summary.tariff <- function(object, top = 5, id = NULL, ...){
 	out$top <- top
 	out$id.toprint <- id
 	out$N <- dim(object$score)[1]
+	decreasing <- !(object$use.rank)
 	if(!is.null(id)){
 		index <- which(rownames(object$score) == id)
 		if(length(index) == 0){
 			stop("Error: provided ID not found")
 		}else{
 			out$indiv.top <- 1:top
-			out$indiv.top <- cbind(out$indiv.top, names(sort(object$score[index, ], decreasing = TRUE)[1:top]))
+			out$indiv.top <- cbind(out$indiv.top, names(sort(object$score[index, ], decreasing = decreasing)[1:top]))
 			out$indiv.top <- data.frame(out$indiv.top)
 			colnames(out$indiv.top) <- c("Rank", "Cause")
 		}
