@@ -6,6 +6,11 @@
 
 \newcommand{\CRANpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 \newcommand{\sspace}{\ifelse{latex}{\out{~}}{ }}
+\section{Changes in version 1.0.4 (2018-08-28)}{
+ \itemize{ 
+    \item Fix error in mismatching CSMF to cause names.
+    }
+}
 \section{Changes in version 1.0.3 (2018-02-26)}{
  \itemize{ 
     \item Fix error in extracting CSMF when use.rank set to TRUE.

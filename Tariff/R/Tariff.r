@@ -307,8 +307,8 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 	if(use.rank){
 		CSMF <- (table(c(causes.test, causes.table2)) - 1)/length(causes.test)
 	}
-	names(CSMF) <- causes.table2
-
+	# names(CSMF) <- causes.table2
+	CSMF <- CSMF[causes.table2]
 
 	# might need to include a way to transform from causes.table2 back to causes.table here
 	causes.train.out <- data.frame(ID = id.train)
