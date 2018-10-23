@@ -9,7 +9,7 @@
 \section{Changes in version 1.0.5 (2018-10-23)}{
  \itemize{ 
     \item Major update: Tariffs was calculated as counts of symptoms in previous versions. Now they are calculated as rates of symptoms.
-    \item Remove the default resampling step of training data for obtaining uniform cause distributions. Resampling can still be performed by setting nboot.rank to be a positive number.
+    \item Add option to remove the default resampling step of training data for obtaining uniform cause distributions.  
     }
 }
 \section{Changes in version 1.0.4 (2018-08-28)}{

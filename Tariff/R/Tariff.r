@@ -11,7 +11,7 @@
 #' @param symps.test N.test by S matrix 
 #' @param causes.table list of causes in the data
 #' @param use.rank logical indicator for whether using ranks instead of scores
-#' @param nboot.rank number of re-sampling for baseline rank comparison
+#' @param nboot.rank number of re-sampling for baseline rank comparison. Default to 1, which resamples training data to have a uniform cause distribution of the same size. Set this to 0 removes bootstrapping the training dataset.
 #' @param use.sig logical indicator for whether using significant Tariff only
 #' @param nboot.sig  number of re-sampling for testing significance.
 #' @param use.top logical indicator for whether the tariff matrix should be cleaned to have only top symptoms
@@ -46,7 +46,7 @@
 #' accuracy <- length(correct) / dim(test)[1]
 #' }
 
-tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  use.rank = TRUE, nboot.rank = 0, use.sig = TRUE, nboot.sig = 500, use.top = FALSE, ntop = 40, ...){
+tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  use.rank = TRUE, nboot.rank = 1, use.sig = TRUE, nboot.sig = 500, use.top = FALSE, ntop = 40, ...){
 	
 	
 	# if input cause is the column name
