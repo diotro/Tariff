@@ -5,7 +5,7 @@
 \title{Replicate Tariff methods}
 \usage{
 tariff(causes.train, symps.train, symps.test, causes.table = NULL,
-  use.rank = TRUE, nboot.rank = 1, use.sig = TRUE, nboot.sig = 500,
+  use.rank = TRUE, nboot.rank = 0, use.sig = TRUE, nboot.sig = 500,
   use.top = FALSE, ntop = 40, ...)
 }
 \arguments{
