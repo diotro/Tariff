@@ -9,4 +9,4 @@ If you have any questions regarding this package, or have concerns/find bugs/hav
 
 ## What's new
 - [CRAN version](https://cran.r-project.org/web/packages/Tariff/news.html)
-- [Current developer version](Tariff/inst/NEWS.Rd)
+- [Current developer version](Tariff/NEWS.md)

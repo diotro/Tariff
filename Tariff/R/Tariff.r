@@ -112,9 +112,6 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 			}
 			cases <- symps[list, ,drop=FALSE]
 
-			if(length(list) == 1){
-
-			}
 			# remove missing from calculation
 			if(binary){
 				count <- apply(cases, 2, function(x){length(which(x == 1))/length(x)})
@@ -319,9 +316,7 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 
 	# find CSMF for testing set
 	CSMF <- (table(c(causes.test, causes.table2)) - 1) / length(causes.test)
-	if(use.rank){
-		CSMF <- (table(c(causes.test, causes.table2)) - 1)/length(causes.test)
-	}
+
 	# names(CSMF) <- causes.table2
 	CSMF <- CSMF[causes.table2]
 
