@@ -238,7 +238,7 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 	# function to remove tail tariff values
 	cleanTariff <- function(tariff, nonzero){
 		for(i in 1:dim(tariff)[1]){
-			order.tmp <- order(abs(tariff[i, ]), decreasing = TRUE)
+			order.tmp <- order(abs(tariff[i, ]), decreasing = FALSE)
 			tariff[i, order.tmp[1:nonzero]] <- 0
 		}
 		return(tariff)
