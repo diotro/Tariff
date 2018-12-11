@@ -80,6 +80,12 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 	symps.test <- symps.test[, -1]
 	# make sure train and test has the same columns
 	joint <- intersect(colnames(symps.train), colnames(symps.test))
+	if(length(joint) < colnames(symps.train)){
+		warning("There exist columns in training but not testing data. They have been removed.")
+	}
+	if(length(joint) < colnames(symps.test)){
+		warning("There exist columns in testing but not training data. They have been removed.")
+	}
 	symps.test <- symps.test[, joint]
 	symps.train <- symps.train[, joint]
 
