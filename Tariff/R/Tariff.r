@@ -7,8 +7,8 @@
 #' This function implements Tariff method.
 #'
 #' @param causes.train character vector of causes, or the column name of cause in the training data
-#' @param symps.train N.train by S matrix 
-#' @param symps.test N.test by S matrix 
+#' @param symps.train symptom matrix with known cause of death. First column should be ID.
+#' @param symps.test symptom matrix to be assigned cause of death. First column should be ID.
 #' @param causes.table list of causes in the data
 #' @param use.rank logical indicator for whether using ranks instead of scores
 #' @param nboot.rank number of re-sampling for baseline rank comparison. Default to 1, which resamples training data to have a uniform cause distribution of the same size. Set this to 0 removes bootstrapping the training dataset.
