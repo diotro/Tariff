@@ -322,10 +322,10 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 	CSMF <- CSMF[causes.table.exist]
 
 	# might need to include a way to transform from causes.table.exist back to causes.table here
-	causes.train.out <- data.frame(ID = id.train)
-	causes.train.out$cause <- as.character(causes.train)
-	causes.test.out <- data.frame(ID = id.test)
-	causes.test.out$cause <- as.character(causes.test)
+	causes.train.out <- data.frame(ID = id.train, 
+						cause = as.character(causes.train))
+	causes.test.out <- data.frame(ID = id.test, 
+		cause = as.character(causes.test))
 
 	fit <- list(score = t(score),
 				causes.train = causes.train.out,
