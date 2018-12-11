@@ -124,7 +124,7 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 			if(binary){
 				count <- apply(cases, 2, function(x){length(which(x == 1))/length(x)})
 			}else{
-				count <- apply(cases, 2, function(x){length(which(x == "Y"))/length(x)})
+				count <- apply(cases, 2, function(x){length(which(toupper(x) == "Y"))/length(x)})
 			}
 			cond.count[i, ] <-  count
 		}
