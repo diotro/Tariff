@@ -51,19 +51,19 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 	
 	# if input cause is the column name
 	if(class(causes.train) == "character" && length(causes.train) == 1){
-		colindex <- match(causes.train, colnames(symps.train))
-		colindex2 <- match(causes.train, colnames(symps.test))
+		colindex.train <- match(causes.train, colnames(symps.train))
+		colindex.test <- match(causes.train, colnames(symps.test))
     
-		if(is.na(colindex)){
+		if(is.na(colindex.train)){
 		  stop("Cannot find the cause-of-death column in training data")
 		}
-		causes.train <- symps.train[, colindex]
-		symps.train <- symps.train[, -colindex]
+		causes.train <- symps.train[, colindex.train]
+		symps.train <- symps.train[, -colindex.train]
 
 		# also remove this from testing data if it is provided
-		if(!is.na(colindex2)){
-			causes.test <- symps.test[, colindex2]
-			symps.test <- symps.test[, -colindex2]		
+		if(!is.na(colindex.test)){
+			causes.test <- symps.test[, colindex.test]
+			symps.test <- symps.test[, -colindex.test]		
 		}
 	}
 
