@@ -1,9 +1,9 @@
 # tariff - changes 
 
-Changes in version 1.0.6 (2018-11-13)
+Changes in version 1.0.6 (2018-12-13)
 =====================================
 * clean out some duplicated codes for better readability
-
+* bug fix for using top Tariff only (i.e., when use.top set to TRUE. It is default to be FALSE in previous releases).
 
 Changes in version 1.0.5 (2018-10-23)
 =====================================

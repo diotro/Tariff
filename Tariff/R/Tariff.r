@@ -10,7 +10,7 @@
 #' @param symps.train symptom matrix with known cause of death. First column should be ID.
 #' @param symps.test symptom matrix to be assigned cause of death. First column should be ID.
 #' @param causes.table list of causes in the data
-#' @param use.rank logical indicator for whether using ranks instead of scores
+#' @param use.rank logical indicator for whether using the ranks of tariff scores instead of raw scores. This avoids the problem with raw tariff scores being unbalanced and is recommended and default to set to TRUE.
 #' @param nboot.rank number of re-sampling for baseline rank comparison. Default to 1, which resamples training data to have a uniform cause distribution of the same size. Set this to 0 removes bootstrapping the training dataset.
 #' @param use.sig logical indicator for whether using significant Tariff only
 #' @param nboot.sig  number of re-sampling for testing significance.
