@@ -105,7 +105,7 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 	# function to count combinations from symps and causes
 	# @para
 	#	symps       : N by S matrix
-	#   causes      : N matrix
+	#   causes      : N vector
 	#   causelist   : C vector
 	#   binary      : boolean indicating "Y" or 1
 	# @return
@@ -116,7 +116,6 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 			cause <- causelist[i]
 			list <- which(causes == cause)
 			if(length(list) == 0){
-				# cat("!")
 				next;
 			}
 			cases <- symps[list, ,drop=FALSE]
@@ -183,13 +182,6 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 		}
 		return(out)
 	} 
-
-	# find individual top n causes  
-	# function to get the n-th largest element's index
-	which.ordern <- function(x, n, isMax){
-		return(order(x, decreasing = isMax)[n])
-	}
-
 
 
 	##
@@ -302,7 +294,7 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 	}
 
 
-	# convert InterVA input back into numeric form (N by S matrix)
+	# convert input into numeric form (N by S matrix)
 	# test.blow <- alldata$symps.test[sample()]
 	symps.num.test <- toBinary(symps.test, missing = 0) 
 	# calculate tariff score (C by N matrix)
