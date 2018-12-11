@@ -57,13 +57,16 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 		if(is.na(colindex.train)){
 		  stop("Cannot find the cause-of-death column in training data")
 		}
+		if(length(colindex.train) > 1 || length(colindex.test) > 1){
+			stop("Multiple cause columns exist in the dataset.")
+		}
 		causes.train <- symps.train[, colindex.train]
 		symps.train <- symps.train[, -colindex.train]
 
 		# also remove this from testing data if it is provided
 		if(!is.na(colindex.test)){
 			causes.test <- symps.test[, colindex.test]
-			symps.test <- symps.test[, -colindex.test]		
+			symps.test <- symps.test[, -colindex.test]
 		}
 	}
 
