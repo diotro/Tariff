@@ -191,12 +191,12 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 	# remove causes not in the training data
 	nonexist <- which(causes.table %in% unique(causes.train) == FALSE)
 	if(length(nonexist) > 0){
-		causes.table2 <- causes.table[-nonexist]
+		causes.table.exist <- causes.table[-nonexist]
 	}else{
-		causes.table2 <- causes.table
+		causes.table.exist <- causes.table
 	}
 	S <- dim(symps.train)[2]
-	C <- length(causes.table2)
+	C <- length(causes.table.exist)
 	N.train <- dim(symps.train)[1]
 	N.test <- dim(symps.test)[1]
 	symps.num <- toBinary(symps.train, missing = 0)
@@ -211,7 +211,7 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 			sample.boot <- sample(1:N.train, size = N.train, replace = TRUE)
 			symps.boot <- symps.num[sample.boot, ]
 			cause.boot <- causes.train[sample.boot]
-			count.boot <- count.combo(symps.boot, cause.boot, causes.table2, binary=T)
+			count.boot <- count.combo(symps.boot, cause.boot, causes.table.exist, binary=T)
 			all.tariff.boot[i, , ] <- getTariff(count.boot)
 			# if(i %% 10 == 0) cat(".")
 		}
@@ -244,7 +244,7 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 		return(tariff)
 	}
 	# calculate actual tariff and delete the insignificant combo
-	X.train <- count.combo(symps.num, causes.train, causes.table2, binary=T)
+	X.train <- count.combo(symps.num, causes.train, causes.table.exist, binary=T)
 	tariff <- getTariff(X.train) * insig
 
 	if(use.top){
@@ -267,7 +267,7 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 
 
 		# calculate which deaths are by which cause
-		index.by.cause <- lapply(causes.table2, function(k){which(causes.train == k)})
+		index.by.cause <- lapply(causes.table.exist, function(k){which(causes.train == k)})
 		if(resample.rank){
 			for(i in 1:nboot.rank){
 				sample.boot <- rep(0, C*factor)
@@ -301,27 +301,27 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 	score.num <- tariff %*% t(symps.num.test) 
 	# find individual top cause (max score) 
 	# use the cause names instead of the indexes
-	causes.test <- causes.table2[apply(score.num, 2, which.max)]
+	causes.test <- causes.table.exist[apply(score.num, 2, which.max)]
 	#
 	score <- NULL
 
 	if(use.rank){
 	 	# find individual top cause (min rank) 
 	 	score <- toRank(score.num, all.score.boot)
-	 	causes.test <- causes.table2[apply(score, 2, which.min)]
+	 	causes.test <- causes.table.exist[apply(score, 2, which.min)]
 	}else{
 		score <- score.num
 	}
 	colnames(score) <- id.test
-	rownames(score) <- causes.table2
+	rownames(score) <- causes.table.exist
 
 	# find CSMF for testing set
-	CSMF <- (table(c(causes.test, causes.table2)) - 1) / length(causes.test)
+	CSMF <- (table(c(causes.test, causes.table.exist)) - 1) / length(causes.test)
 
-	# names(CSMF) <- causes.table2
-	CSMF <- CSMF[causes.table2]
+	# names(CSMF) <- causes.table.exist
+	CSMF <- CSMF[causes.table.exist]
 
-	# might need to include a way to transform from causes.table2 back to causes.table here
+	# might need to include a way to transform from causes.table.exist back to causes.table here
 	causes.train.out <- data.frame(ID = id.train)
 	causes.train.out$cause <- as.character(causes.train)
 	causes.test.out <- data.frame(ID = id.test)
@@ -331,7 +331,7 @@ tariff <- function(causes.train, symps.train, symps.test, causes.table = NULL,  
 				causes.train = causes.train.out,
 				causes.test = causes.test.out,
 				csmf = CSMF, 
-				causes.table = causes.table2, 
+				causes.table = causes.table.exist, 
 				use.rank = use.rank)
 	class(fit) <- "tariff"
 	return(fit)
