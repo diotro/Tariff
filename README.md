@@ -1,4 +1,5 @@
-# Tariff  [![Build Status](https://travis-ci.org/verbal-autopsy-software/Tariff.svg?branch=master)](https://travis-ci.org/verbal-autopsy-software/Tariff) [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/Tariff)](https://cran.r-project.org/package=Tariff)
+# Tariff  [![Build Status](https://travis-ci.org/verbal-autopsy-software/Tariff.svg?branch=master)](https://travis-ci.org/verbal-autopsy-software/Tariff) [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/Tariff)](https://cran.r-project.org/package=Tariff)  [![](https://cranlogs.r-pkg.org/badges/Tariff)](https://cran.r-project.org/package=Tariff) [![](https://cranlogs.r-pkg.org/badges/grand-total/Tariff?color=orange)](https://cran.r-project.org/package=Tariff)
+
 
 R implementation of Tariff method for VA, not exactly the same as the original version by IHME.
 
