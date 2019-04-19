@@ -14,6 +14,6 @@ test_that("Training data all has the same cause", {
   fit <- tariff(causes.train = "cause", symps.train = train,
         symps.test = test, causes.table = allcauses)
 
-  expect_equal("Pulmonary TB", unique(as.character(fit$causes.test[,2])))
+  expect_equal("Pulmonary T", unique(as.character(fit$causes.test[,2])))
 
 })
